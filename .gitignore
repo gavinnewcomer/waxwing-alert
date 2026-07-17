@@ -1,0 +1,6 @@
+/target
+.env
+.env.local
+# Persistent state: contains encrypted eBird tokens + channel subscriptions.
+ebird-alert-state.json
+*.state.json

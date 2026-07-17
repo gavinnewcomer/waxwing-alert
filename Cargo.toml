@@ -1,0 +1,27 @@
+[package]
+name = "ebird-alert"
+version = "1.0.0"
+edition = "2024"
+rust-version = "1.85"
+description = "A self-hosted Discord bot that alerts channels to notable/rare bird sightings per US county via the eBird API."
+license = "Apache-2.0"
+repository = "https://github.com/gavinnewcomer/ebird-rba"
+readme = "README.md"
+keywords = ["discord", "ebird", "birding", "bot", "alerts"]
+categories = ["command-line-utilities"]
+
+[dependencies]
+serenity = "0.12"
+tokio = { version = "1", features = ["macros", "rt-multi-thread", "signal", "time", "sync"] }
+reqwest = { version = "0.12", default-features = false, features = ["json", "rustls-tls"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+aes-gcm = "0.10"
+base64 = "0.22"
+hex = "0.4"
+chrono = "0.4"
+dotenvy = "0.15"
+anyhow = "1"
+thiserror = "1"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
