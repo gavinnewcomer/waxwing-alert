@@ -1,6 +1,6 @@
 [package]
-name = "ebird-alert"
-version = "1.0.0"
+name = "waxwing-alert"
+version = "1.0.1"
 edition = "2024"
 rust-version = "1.85"
 description = "A self-hosted Discord bot that alerts channels to notable/rare bird sightings per US county via the eBird API."

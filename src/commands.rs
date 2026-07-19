@@ -26,14 +26,14 @@ use crate::store::Store;
 pub fn commands() -> Vec<CreateCommand> {
     let admin = Permissions::MANAGE_GUILD;
     vec![
-        CreateCommand::new("ebird-activate")
+        CreateCommand::new("wwa-activate")
             .description("Activate (or rotate) this server's eBird API key")
             .default_member_permissions(admin)
             .add_option(
                 CreateCommandOption::new(CommandOptionType::String, "key", "Your eBird API token")
                     .required(true),
             ),
-        CreateCommand::new("ebird-subscribe")
+        CreateCommand::new("wwa-subscribe")
             .description("Alert this channel to notable birds in a county")
             .default_member_permissions(admin)
             .add_option(
@@ -46,7 +46,7 @@ pub fn commands() -> Vec<CreateCommand> {
                     .required(true)
                     .set_autocomplete(true),
             ),
-        CreateCommand::new("ebird-fetch-subdivisions")
+        CreateCommand::new("wwa-fetch-subdivisions")
             .description("Load a state's counties so they appear in /ebird-subscribe")
             .default_member_permissions(admin)
             .add_option(
@@ -54,7 +54,7 @@ pub fn commands() -> Vec<CreateCommand> {
                     .required(true)
                     .set_autocomplete(true),
             ),
-        CreateCommand::new("ebird-unsubscribe")
+        CreateCommand::new("wwa-unsubscribe")
             .description("Stop this channel's alerts for a county")
             .default_member_permissions(admin)
             .add_option(
@@ -65,7 +65,7 @@ pub fn commands() -> Vec<CreateCommand> {
                 )
                 .required(true),
             ),
-        CreateCommand::new("ebird-onboarding")
+        CreateCommand::new("wwa-onboarding")
             .description("Guided setup: pick a state, choose counties, optionally create channels")
             .default_member_permissions(admin)
             .add_option(
@@ -81,10 +81,10 @@ pub fn commands() -> Vec<CreateCommand> {
                 )
                 .required(false),
             ),
-        CreateCommand::new("ebird-list").description("List this server's eBird subscriptions"),
-        CreateCommand::new("ebird-status")
+        CreateCommand::new("wwa-list").description("List this server's eBird subscriptions"),
+        CreateCommand::new("wwa-status")
             .description("Show subscriptions, polling cadence, and request-budget usage"),
-        CreateCommand::new("ebird-purge")
+        CreateCommand::new("wwa-purge")
             .description("DEBUG: delete all bot-created county channels + eBird Alerts categories")
             .default_member_permissions(admin),
     ]
@@ -102,7 +102,7 @@ pub async fn dispatch(
     };
 
     match cmd.data.name.as_str() {
-        "ebird-activate" => {
+        "wwa-activate" => {
             let key = opt_str(cmd, "key").to_string();
             // Validate against eBird before storing, so a typo'd key fails loudly here
             // rather than silently at poll time. Deferred because it's a network call.
@@ -128,13 +128,13 @@ pub async fn dispatch(
                 .await?;
             Ok(())
         }
-        "ebird-fetch-subdivisions" => {
+        "wwa-fetch-subdivisions" => {
             let state = opt_str(cmd, "state");
             if state.is_empty() {
                 return reply(ctx, cmd, "Pick a state.").await;
             }
             let Some(token) = store.token_for(&guild_id).await? else {
-                return reply(ctx, cmd, "Run `/ebird-activate` first.").await;
+                return reply(ctx, cmd, "Run `/wwa-activate` first.").await;
             };
             let client = EbirdClient::new(token);
             match counties.get_or_load(state, &client).await {
@@ -143,7 +143,7 @@ pub async fn dispatch(
                         ctx,
                         cmd,
                         &format!(
-                            "✅ Loaded {} counties for {state}. You can now `/ebird-subscribe`.",
+                            "✅ Loaded {} counties for {state}. You can now `/wwa-subscribe`.",
                             list.len()
                         ),
                     )
@@ -152,9 +152,9 @@ pub async fn dispatch(
                 Err(e) => reply(ctx, cmd, &format!("Failed to load counties for {state}: {e}")).await,
             }
         }
-        "ebird-subscribe" => {
+        "wwa-subscribe" => {
             if !store.has_key(&guild_id).await {
-                return reply(ctx, cmd, "Run `/ebird-activate` first.").await;
+                return reply(ctx, cmd, "Run `/wwa-activate` first.").await;
             }
             let state = opt_str(cmd, "state");
             let county_code = opt_str(cmd, "county");
@@ -162,7 +162,7 @@ pub async fn dispatch(
                 return reply(
                     ctx,
                     cmd,
-                    "Load this state's counties with `/ebird-fetch-subdivisions` first, then pick a county.",
+                    "Load this state's counties with `/wwa-fetch-subdivisions` first, then pick a county.",
                 )
                 .await;
             }
@@ -182,7 +182,7 @@ pub async fn dispatch(
             };
             reply(ctx, cmd, &msg).await
         }
-        "ebird-unsubscribe" => {
+        "wwa-unsubscribe" => {
             let county = opt_str(cmd, "county");
             let removed = store
                 .unsubscribe(&guild_id, cmd.channel_id.get(), county)
@@ -194,10 +194,10 @@ pub async fn dispatch(
             };
             reply(ctx, cmd, &msg).await
         }
-        "ebird-list" => {
+        "wwa-list" => {
             let subs = store.list(&guild_id).await;
             let msg = if subs.is_empty() {
-                "No subscriptions yet. Use `/ebird-subscribe`.".to_string()
+                "No subscriptions yet. Use `/wwa-subscribe`.".to_string()
             } else {
                 let mut lines = String::from("**Subscriptions:**\n");
                 for s in subs {
@@ -214,7 +214,7 @@ pub async fn dispatch(
     }
 }
 
-/// `/ebird-status` — surface the effective cadence + budget usage derived from this
+/// `/wwa-status` — surface the effective cadence + budget usage derived from this
 /// guild's distinct-county count.
 pub async fn status(
     ctx: &Context,
@@ -231,7 +231,7 @@ pub async fn status(
     let key = if store.has_key(&guild_id).await {
         "✅ activated"
     } else {
-        "❌ not activated — run `/ebird-activate`"
+        "❌ not activated — run `/wwa-activate`"
     };
     let mode = if plan.active_now {
         "active (day)"
@@ -256,7 +256,7 @@ pub async fn status(
 
 /// Handle an autocomplete interaction for `state` / `county`. Cache-only — never makes a
 /// network call, so it always responds within Discord's ~3s window. Counties are loaded
-/// out-of-band by `/ebird-fetch-subdivisions`.
+/// out-of-band by `/wwa-fetch-subdivisions`.
 pub async fn autocomplete(
     ctx: &Context,
     cmd: &CommandInteraction,
@@ -276,7 +276,7 @@ pub async fn autocomplete(
                 filter_counties(&list, partial)
             } else {
                 vec![(
-                    "⚠ Run /ebird-fetch-subdivisions for this state first".to_string(),
+                    "⚠ Run /wwa-fetch-subdivisions for this state first".to_string(),
                     COUNTY_HINT.to_string(),
                 )]
             }

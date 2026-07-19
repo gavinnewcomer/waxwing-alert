@@ -14,10 +14,10 @@ pub fn alert_embed(obs: &NotableObs, region_name: &str) -> CreateEmbed {
     let checklist_url = format!("https://ebird.org/checklist/{}", obs.sub_id);
 
     CreateEmbed::new()
-        .title(format!("{} ({})", obs.com_name, obs.sci_name))
+        .title(format!("{}", obs.com_name))
         .url(checklist_url.clone())
         .description(format!(
-            "**{count}** reported in {region_name}\n\
+            "{count} reported in {region_name} county\n\
              📍 [{}]({map_url})\n\
              🗓 {}\n\
              🔗 [Checklist]({checklist_url})",

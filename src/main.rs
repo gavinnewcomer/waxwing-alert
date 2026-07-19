@@ -1,8 +1,8 @@
-use ebird_alert::config::Config;
-use ebird_alert::counties::CountyCache;
-use ebird_alert::onboarding::OnboardSessions;
-use ebird_alert::store::Store;
-use ebird_alert::{commands, onboarding, poller, purge, reaper};
+use waxwing_alert::config::Config;
+use waxwing_alert::counties::CountyCache;
+use waxwing_alert::onboarding::OnboardSessions;
+use waxwing_alert::store::Store;
+use waxwing_alert::{commands, onboarding, poller, purge, reaper};
 
 use serenity::all::*;
 use tracing::{error, info};
@@ -55,14 +55,14 @@ impl EventHandler for Handler {
         match interaction {
             Interaction::Command(cmd) => {
                 let result = match cmd.data.name.as_str() {
-                    "ebird-onboarding" => {
+                    "wwa-onboarding" => {
                         onboarding::start(&ctx, &cmd, &self.store, &self.counties, &self.sessions)
                             .await
                     }
-                    "ebird-status" => {
+                    "wwa-status" => {
                         commands::status(&ctx, &cmd, &self.store, &self.schedule).await
                     }
-                    "ebird-purge" => purge::start(&ctx, &cmd, &self.store).await,
+                    "wwa-purge" => purge::start(&ctx, &cmd, &self.store).await,
                     _ => commands::dispatch(&ctx, &cmd, &self.store, &self.counties).await,
                 };
                 if let Err(e) = result {
@@ -97,7 +97,7 @@ async fn main() -> anyhow::Result<()> {
     tracing_subscriber::fmt()
         .with_env_filter(
             tracing_subscriber::EnvFilter::try_from_default_env()
-                .unwrap_or_else(|_| "ebird_alert=info,serenity=warn".into()),
+                .unwrap_or_else(|_| "waxwing_alert=info,serenity=warn".into()),
         )
         .init();
 

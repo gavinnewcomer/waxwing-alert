@@ -1,4 +1,4 @@
-# ebird-alert
+# waxwing-alert
 
 A self-hosted, **stateless** Discord bot (Rust + [serenity](https://github.com/serenity-rs/serenity))
 that alerts channels to **notable/rare bird sightings by US county** using the
@@ -36,14 +36,14 @@ All admin commands require **Manage Server**; replies are ephemeral.
 
 | Command | Effect |
 |---|---|
-| `/ebird-activate key:<…>` | Validate + store this server's eBird key (encrypted at rest) |
-| `/ebird-fetch-subdivisions state:<…>` | Load a state's counties for autocomplete |
-| `/ebird-subscribe state:<…> county:<…>` | Alert **this channel** to a county |
-| `/ebird-unsubscribe county:<…>` | Remove the subscription |
-| `/ebird-onboarding state:<…> [suffix:<…>]` | Guided setup: pick counties, optionally create channels |
-| `/ebird-list` | List this server's subscriptions |
-| `/ebird-status` | Cadence + request-budget usage |
-| `/ebird-purge` | Delete the channels the bot created |
+| `/wwa-activate key:<…>` | Validate + store this server's eBird key (encrypted at rest) |
+| `/wwa-fetch-subdivisions state:<…>` | Load a state's counties for autocomplete |
+| `/wwa-subscribe state:<…> county:<…>` | Alert **this channel** to a county |
+| `/wwa-unsubscribe county:<…>` | Remove the subscription |
+| `/wwa-onboarding state:<…> [suffix:<…>]` | Guided setup: pick counties, optionally create channels |
+| `/wwa-list` | List this server's subscriptions |
+| `/wwa-status` | Cadence + request-budget usage |
+| `/wwa-purge` | Delete the channels the bot created |
 
 ## 1. Create the Discord application
 
@@ -73,8 +73,8 @@ register globally (up to ~1h to appear). `RUST_LOG` controls log level.
 
 ## 3. Use it
 
-In your server: `/ebird-activate key:<your eBird token>`, then `/ebird-onboarding
-state:Pennsylvania` (or `/ebird-subscribe`). Get an eBird token at
+In your server: `/wwa-activate key:<your eBird token>`, then `/wwa-onboarding
+state:Pennsylvania` (or `/wwa-subscribe`). Get an eBird token at
 https://ebird.org/api/keygen.
 
 ## Tests
@@ -98,9 +98,9 @@ docker compose logs -f        # watch it connect
 Or without Compose:
 
 ```bash
-docker build -t ebird-alert .
-docker run -d --name ebird-alert --restart unless-stopped \
-  --env-file .env -v ebird-alert-state:/data ebird-alert
+docker build -t waxwing-alert .
+docker run -d --name waxwing-alert --restart unless-stopped \
+  --env-file .env -v waxwing-alert-state:/data waxwing-alert
 ```
 
 The image is multi-stage (a distroless runtime, ~50 MB). The bot writes its state file to

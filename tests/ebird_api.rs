@@ -8,7 +8,7 @@
 //!
 //! Get a token at https://ebird.org/api/keygen
 
-use ebird_alert::ebird::EbirdClient;
+use waxwing_alert::ebird::EbirdClient;
 
 /// The eBird token to test with, or `None` to signal the caller to skip. Reads `.env` so
 /// you can keep the token out of your shell profile.
