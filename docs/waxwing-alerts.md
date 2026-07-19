@@ -1,23 +1,23 @@
-# Waxwing Alerts (eBird RBA)
+# Waxwing Alert (eBird RBA)
 
 ## Overview
 
-Waxwing Alerts is a free, open-source tool that sends Discord notifications when someone reports a rare bird in your area. It is built on the [eBird API 2.0](https://documenter.getpostman.com/view/664302/S1ENwy59), the data service run by the Cornell Lab of Ornithology.
+Waxwing Alert is a free, open-source tool that sends Discord notifications when someone reports a rare bird in your area. It is built on the [eBird API 2.0](https://documenter.getpostman.com/view/664302/S1ENwy59), the data service run by the Cornell Lab of Ornithology.
 
 **RBA** stands for *Rare Bird Alert*, a notification that an unusual or notable bird has been spotted nearby.
 
-We built Waxwing Alerts for birders in the United States, with one main goal: give every state's Discord community equal access to notable-sighting alerts. A single, low-cost server can cover all 50 states, so no community gets left out because of hosting costs.
+We built Waxwing Alert for birders in the United States, with one main goal: give every state's Discord community equal access to notable-sighting alerts. A single, low-cost server can cover all 50 states, so no community gets left out because of hosting costs.
 
 The tool is *stateless*, meaning it does not store a database of past activity. It simply checks eBird for new reports and passes them along. This keeps it cheap and simple to run. A single server costs about **$5/month** and covers every state at once.
 
-There are two ways to use Waxwing Alerts:
+There are two ways to use Waxwing Alert:
 
-- **Use our hosted bot (recommended).** Add the Waxwing Alerts bot to your Discord server and follow the guided setup. This is the easiest path and requires no technical skills.
+- **Use our hosted bot (recommended).** Add the Waxwing Alert bot to your Discord server and follow the guided setup. This is the easiest path and requires no technical skills.
 - **Host your own copy.** Run your own instance of the tool. This requires some technical knowledge, though modern AI assistants can walk you through it.
 
 ## How does it work?
 
-Waxwing Alerts watches for notable bird reports in the regions you choose. Here is the process:
+Waxwing Alert watches for notable bird reports in the regions you choose. Here is the process:
 
 1. **We check eBird regularly.** The bot *polls* the eBird API, meaning it asks eBird, on a repeating schedule, "Are there any new notable sightings?"
 2. **We format each new report.** When a new sighting appears, we package it into a clean, readable message. Each alert includes:
@@ -38,7 +38,7 @@ You can read more about these limits, and how to increase your polling rate, in 
 
 ## Who is this for?
 
-Waxwing Alerts is for anyone who wants to know when a rare bird shows up nearby.
+Waxwing Alert is for anyone who wants to know when a rare bird shows up nearby.
 
 Our main focus is state birding Discord communities that do not already have a rare-bird alert bot. But the tool works for anyone tracking sightings in specific regions, such as:
 
@@ -53,7 +53,7 @@ Follow these steps to add the bot to your Discord server.
 
 Click the link below. Discord will ask you to install the app with the permissions it needs to work:
 
-[Install Waxwing Alerts](https://discord.com/oauth2/authorize?client_id=1527488355510521877&permissions=268454928&integration_type=0&scope=applications.commands+bot)
+[Install Waxwing Alert](https://discord.com/oauth2/authorize?client_id=1527488355510521877&permissions=268454928&integration_type=0&scope=applications.commands+bot)
 
 ### Step 2: Request your eBird API key
 

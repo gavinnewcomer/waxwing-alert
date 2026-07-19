@@ -1,14 +1,14 @@
-# Privacy Policy — Waxwing Alerts (eBird RBA)
+# Privacy Policy — Waxwing Alert (eBird RBA)
 
 **Last updated: July 18, 2026**
 
-This Privacy Policy explains what information the **Waxwing Alerts** Discord bot ("the bot", "we", "us") collects, how it is used, and the choices you have. It applies to the **hosted bot** operated by Gavin Newcomer. If you run your own copy of the open-source software, you are the operator of that instance and this policy does not apply to it — see [Self-hosting](#self-hosting) below.
+This Privacy Policy explains what information the **Waxwing Alert** Discord bot ("the bot", "we", "us") collects, how it is used, and the choices you have. It applies to the **hosted bot** operated by Gavin Newcomer. If you run your own copy of the open-source software, you are the operator of that instance and this policy does not apply to it — see [Self-hosting](#self-hosting) below.
 
 By adding the bot to your Discord server or using its commands, you agree to this policy.
 
 ## Summary
 
-Waxwing Alerts is deliberately minimal. It does **not** read your messages, build a database of your activity, track your members, or run analytics. The only things it stores are what it needs to send alerts: your server's eBird API key (encrypted) and which channels are subscribed to which counties.
+Waxwing Alert is deliberately minimal. It does **not** read your messages, build a database of your activity, track your members, or run analytics. The only things it stores are what it needs to send alerts: your server's eBird API key (encrypted) and which channels are subscribed to which counties.
 
 ## What we collect
 
@@ -64,7 +64,7 @@ The bot is not directed at children under 13, and we do not knowingly collect pe
 
 ## Self-hosting
 
-Waxwing Alerts is open-source (Apache-2.0). If you run your own instance, **you** are the data controller/operator for that instance: the eBird keys and subscriptions live on your own server, under your control, and this policy does not govern them.
+Waxwing Alert is open-source (Apache-2.0). If you run your own instance, **you** are the data controller/operator for that instance: the eBird keys and subscriptions live on your own server, under your control, and this policy does not govern them.
 
 ## Changes to this policy
 
@@ -72,4 +72,4 @@ We may update this policy from time to time. Material changes will be reflected 
 
 ## Contact
 
-Questions or data requests: **gjnprivate@gmail.com**.
+Questions or data requests: **gavin@waxwing.xyz**.

@@ -2,6 +2,6 @@ target/
 .git/
 .env
 .env.local
-ebird-alert-state.json
+waxwing-alert-state.json
 *.state.json
 .github/

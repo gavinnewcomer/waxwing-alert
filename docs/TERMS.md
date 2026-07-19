@@ -1,12 +1,12 @@
-# Terms of Service — Waxwing Alerts (eBird RBA)
+# Terms of Service — Waxwing Alert (eBird RBA)
 
 **Last updated: July 18, 2026**
 
-These Terms of Service ("Terms") govern your use of the **Waxwing Alerts** Discord bot ("the bot", "the Service") as operated by Gavin Newcomer ("we", "us"). By adding the bot to a Discord server or using its commands, you ("you", the server administrator and its members) agree to these Terms. If you do not agree, do not use the bot.
+These Terms of Service ("Terms") govern your use of the **Waxwing Alert** Discord bot ("the bot", "the Service") as operated by Gavin Newcomer ("we", "us"). By adding the bot to a Discord server or using its commands, you ("you", the server administrator and its members) agree to these Terms. If you do not agree, do not use the bot.
 
 ## 1. The Service
 
-Waxwing Alerts is a free Discord bot that posts notifications about notable and rare bird sightings, by US county, using data from the [eBird API 2.0](https://documenter.getpostman.com/view/664302/S1ENwy59) operated by the Cornell Lab of Ornithology. Server admins activate an eBird API key and subscribe channels to counties; the bot polls eBird on a schedule and posts alerts to the subscribed channels.
+Waxwing Alert is a free Discord bot that posts notifications about notable and rare bird sightings, by US county, using data from the [eBird API 2.0](https://documenter.getpostman.com/view/664302/S1ENwy59) operated by the Cornell Lab of Ornithology. Server admins activate an eBird API key and subscribe channels to counties; the bot polls eBird on a schedule and posts alerts to the subscribed channels.
 
 ## 2. Eligibility and Discord's Terms
 
@@ -67,4 +67,4 @@ These Terms are governed by the laws of the State of _[your state]_, United Stat
 
 ## 14. Contact
 
-Questions about these Terms: **gjnprivate@gmail.com**.
+Questions about these Terms: **gavin@waxwing.xyz**.

@@ -1,4 +1,4 @@
-# Run ebird-alert with Docker Compose.
+# Run waxwing-alert with Docker Compose.
 #
 #   1. cp .env.example .env   # set DISCORD_TOKEN + EBIRD_ALERT_ENC_KEY (openssl rand -hex 32)
 #   2. docker compose up -d   # builds locally, or pulls the image if you use the published one
@@ -8,13 +8,13 @@
 services:
   ebird-alert:
     # Build from source locally. To use a published image instead, comment out `build`
-    # and set `image: ghcr.io/YOUR_USERNAME/ebird-alert:latest`.
+    # and set `image: ghcr.io/gavinnewcomer/waxwing-alert:latest`.
     build: .
-    image: ebird-alert:latest
+    image: waxwing-alert:latest
     restart: unless-stopped
     env_file: .env
     volumes:
-      - ebird-alert-state:/data
+      - waxwing-alert-state:/data
 
 volumes:
-  ebird-alert-state:
+  waxwing-alert-state:
