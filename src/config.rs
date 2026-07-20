@@ -30,7 +30,7 @@ impl Config {
             discord_token: env("DISCORD_TOKEN")?.trim().to_string(),
             enc_key: crypto::parse_key(&env("EBIRD_ALERT_ENC_KEY")?)?,
             store_path: std::env::var("STORE_PATH")
-                .unwrap_or_else(|_| "ebird-alert-state.json".to_string()),
+                .unwrap_or_else(|_| "waxwing-state.json".to_string()),
             poll_cadence_min: parse_or("DEFAULT_POLL_CADENCE_MIN", 15),
             night_poll_cadence_min: parse_or("NIGHT_POLL_CADENCE_MIN", 120),
             active_start_hour: parse_or("ACTIVE_START_HOUR", 4),

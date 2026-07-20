@@ -63,7 +63,7 @@ jobs:
       - name: Package binary
         run: |
           tar -czf "waxwing-alert-${{ github.ref_name }}-x86_64-linux-gnu.tar.gz" \
-            -C target/release ebird-alert
+            -C target/release waxwing-alert
       - name: Publish GitHub Release
         uses: softprops/action-gh-release@v2
         with:

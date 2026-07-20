@@ -1,4 +1,4 @@
-# ebird-alert — Architecture
+# waxwing-alert — Architecture
 
 A self-hosted Discord bot (Rust + [serenity](https://github.com/serenity-rs/serenity))
 that alerts channels to **notable/rare bird sightings per US county** via the eBird API.

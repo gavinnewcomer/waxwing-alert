@@ -1,4 +1,4 @@
-//! ebird-alert library crate. The binary (`src/main.rs`) and the integration tests
+//! waxwing-alert library crate. The binary (`src/main.rs`) and the integration tests
 //! (`tests/`) both build on these modules.
 
 pub mod commands;

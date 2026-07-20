@@ -6,7 +6,7 @@
 # State (encrypted keys + subscriptions) persists in the named volume below.
 
 services:
-  ebird-alert:
+  waxwing-alert:
     # Build from source locally. To use a published image instead, comment out `build`
     # and set `image: ghcr.io/gavinnewcomer/waxwing-alert:latest`.
     build: .
