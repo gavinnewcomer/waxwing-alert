@@ -91,8 +91,9 @@ impl EventHandler for Handler {
 
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
-    // Load .env before initializing tracing so RUST_LOG from it takes effect.
-    dotenvy::dotenv().ok();
+    // Load env before initializing tracing so RUST_LOG from it takes effect.
+    // Prefers .env.local (dev) over .env (deploy); see config::load_env.
+    waxwing_alert::config::load_env();
 
     tracing_subscriber::fmt()
         .with_env_filter(

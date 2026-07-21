@@ -23,9 +23,26 @@ pub struct Config {
     pub dev_guild_id: Option<u64>,
 }
 
+/// Load environment variables from a dotenv file.
+///
+/// Prefers `.env.local` when it exists (local development — typically sets `DEV_GUILD_ID`
+/// so slash commands register to one guild instantly). Otherwise falls back to `.env`
+/// (production/deploy — no `DEV_GUILD_ID`, so commands register globally). `.env.local`
+/// never ships to the server, so deploys always take the `.env` path.
+///
+/// Idempotent and never overrides variables already present in the process environment,
+/// so it's safe to call from both `main` and [`Config::load`].
+pub fn load_env() {
+    if std::path::Path::new(".env.local").exists() {
+        dotenvy::from_filename(".env.local").ok();
+    } else {
+        dotenvy::dotenv().ok();
+    }
+}
+
 impl Config {
     pub fn load() -> anyhow::Result<Self> {
-        dotenvy::dotenv().ok();
+        load_env();
         Ok(Self {
             discord_token: env("DISCORD_TOKEN")?.trim().to_string(),
             enc_key: crypto::parse_key(&env("EBIRD_ALERT_ENC_KEY")?)?,
